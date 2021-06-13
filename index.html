@@ -4,50 +4,24 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles.css" />
-    <title>Карточки | Проект 1</title>
+    <title>Drag & Drop | Проект 2</title>
   </head>
   <body>
-    <div class="container">
-      <div
-        class="slide"
-        style="
-          background-image: url('https://images.unsplash.com/photo-1589749807521-dd6bc0d4f75d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
-        "
-      >
-        <h3>AMD Ryzen</h3>
+    <div>
+      <div class="row">
+          <div class="col-header start">Начать</div>
+          <div class="col-header progress">В процессе</div>
+          <div class="col-header done">Готовы</div>
       </div>
-      <div
-        class="slide"
-        style="
-          background-image: url('https://images.unsplash.com/photo-1555617778-02518510b9fa?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80');
-        "
-      >
-        <h3>Intel</h3>
+
+      <div class="row">
+        <div class="placeholder">
+          <div class="item" draggable="true">Перетащи меня</div>
+        </div>
+        <div class="placeholder"></div>
+        <div class="placeholder"></div>
       </div>
-      <div
-        class="slide"
-        style="
-          background-image: url('https://images.unsplash.com/photo-1605876516612-a04e21021ead?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1021&q=80');
-        "
-      >
-        <h3>GeForce RTX</h3>
-      </div>
-      <div
-        class="slide"
-        style="
-          background-image: url('https://images.unsplash.com/photo-1588616282545-9f2f2a96e4c9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80');
-        "
-      >
-        <h3>Corsair</h3>
-      </div>
-      <div
-        class="slide"
-        style="
-          background-image: url('https://images.unsplash.com/photo-1591405351990-4726e331f141?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80');
-        "
-      >
-        <h3>RTX 2080</h3>
-      </div>
+      
     </div>
     <script src="./app.js"></script>
   </body>

@@ -1,54 +1,90 @@
-@import url('https://fonts.googleapis.com/css?family=Muli&display=swap'); 
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
 
 * {
   box-sizing: border-box;
 }
 
 body {
-  font-family: 'Muli', sans-serif;
+  font-family: 'Roboto', sans-serif;
+  background-color: #cbeeff;
+  display: flex;
+  padding-top: 5rem;
+  justify-content: center;
   overflow: hidden;
   margin: 0;
-  background: #222;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
-.container {
-  width: 100%;
+.row {
   display: flex;
-  padding: 0 20px;
+  width: 600px;
+  justify-content: space-between;
+  margin-bottom: 1rem;
 }
 
-.slide {
-  height: 80vh;
+.col-header {
+  width: 150px;
+  box-shadow: 4px 4px 9px rgba(198, 198, 198, 0.36);
   border-radius: 20px;
-  margin: 10px;
-  cursor: pointer;
+  padding: 0.8rem 1rem;
   color: #fff;
-  flex: 1;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  position: relative;
-  transition: all 500ms ease-in-out;
 }
 
-.slide h3 {
-  position: absolute;
-  font-size: 24px;
-  bottom: 20px;
-  left: 20px;
-  margin: 0;
-  opacity: 0;
+.item {
+  width: 150px;
+  height: 66px;
+  border: 1px solid #eee;
+  box-shadow: 4px 4px 9px rgba(198, 198, 198, 0.36);
+  border-radius: 20px;
+  background: #f7f6f7;
+  padding: 0.8rem 1rem;
+  color: #828282;
+  text-align: center;
+  cursor: grab;
+  transition: width 1s ease-in-out;
 }
 
-.slide.active {
-  flex: 10;
+.item:active {
+  cursor: grabbing;
 }
 
-.slide.active h3 {
-  opacity: 1;
-  transition: opacity 0.3s ease-in 0.4s;
+.placeholder {
+  width: 150px;
+  height: 66px;
+}
+
+.start {
+  background: linear-gradient(90deg, #8969fd 0%, #57abf0 100%, #209cff 100%);
+}
+
+.progress {
+  background: linear-gradient(90deg, #209cff 0%, #68e0cf 100%);
+}
+
+.done {
+  background: linear-gradient(90deg, #68e0cf 0%, #84fab0 100%);
+}
+
+.hold {
+  border: 3px solid #ccc;
+}
+
+.hide {
+  display: none;
+}
+
+.hovered {
+  border: 2px dotted #84caff;
+  animation: hovered 2s ease;
+}
+
+@keyframes hovered {
+  0% {
+    transform: scale(1) rotate(0deg)
+  }
+  50% {
+    transform: scale(1.2) rotate(0deg)
+  }
+  100% {
+    transform: scale(1) rotate(0deg)
+  }
 }
