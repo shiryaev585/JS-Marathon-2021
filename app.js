@@ -1,41 +1,37 @@
-const item = document.querySelector('.item');
-const placeholders = document.querySelectorAll('.placeholder');
+const upBtn = document.querySelector('.up-button');
+const downBtn = document.querySelector('.down-button');
+const sidebar = document.querySelector('.sidebar');
+const container = document.querySelector('.container');
+const mainSlide = document.querySelector('.main-slide');
+const slidesCount = mainSlide.querySelectorAll('div').length;
 
-item.addEventListener('dragstart', dragStart);
-item.addEventListener('dragend', dragEnd);
+let activeSlideIndex = 0;
 
-for (let placeholder of placeholders) {
-  placeholder.addEventListener('dragover', dragOver);
-  placeholder.addEventListener('dragenter', dragEnter);
-  placeholder.addEventListener('dragleave', dragLeave);
-  placeholder.addEventListener('drop', drop);
-}
+sidebar.style.top = `-${(slidesCount - 1) * 100}vh`;
 
-function dragStart(e) {
-  e.target.classList.add('hold');
-  setTimeout(() => {
-    e.target.classList.add('hide');
-  }, 0);
-}
+upBtn.addEventListener('click', () => {
+  changeSlide('up');
+});
 
-function dragEnd(e) {
-  //   e.target.classList.remove('hold', 'hide');
-  e.target.className = 'item';
-}
+downBtn.addEventListener('click', () => {
+  changeSlide('down');
+});
 
-function dragOver(e) {
-  e.preventDefault();
-}
+function changeSlide(direction) {
+  if (direction === 'up') {
+    activeSlideIndex++;
+    if (activeSlideIndex === slidesCount) {
+      activeSlideIndex = 0;
+    }
+  } else if (direction === 'down') {
+    activeSlideIndex--;
+    if (activeSlideIndex < 0) {
+      activeSlideIndex = slidesCount - 1;
+    }
+  }
 
-function dragEnter(e) {
-  e.target.classList.add('hovered');
-}
+  const height = container.clientHeight;
 
-function dragLeave(e) {
-  e.target.classList.remove('hovered');
-}
-
-function drop(e) {
-  e.target.append(item);
-  e.target.classList.remove('hovered');
+  mainSlide.style.transform = `translateY(-${activeSlideIndex * height}px)`;
+  sidebar.style.transform = `translateY(${activeSlideIndex * height}px)`;
 }
