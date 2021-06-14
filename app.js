@@ -1,6 +1,6 @@
 const board = document.querySelector('#board');
-const colors = ['#e74c3c', '#8e44ad', '#3498db', '#e67e22', '2ecc71'];
-const SQUARES_NUMBERS = 500;
+const colors = ['#e74c3c', '#8e44ad', '#3498db', '#e67e22', '2ecc71', '#FF7251', '#48D3EC', '#017C9E', '#10C3AE', '#43DC49', '#C822FF', '#E6ABFF', '#6DC7FF', '#1A6DFF', '#DC4355', '#FFD467'];
+const SQUARES_NUMBERS = 759;
 
 for (let i = 0; i < SQUARES_NUMBERS; i++) {
   const square = document.createElement('div');
