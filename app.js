@@ -1,30 +1,85 @@
+const startBtn = document.querySelector('#start');
+const screens = document.querySelectorAll('.screen');
+const timeList = document.querySelector('#time-list');
+const timeEl = document.querySelector('#time');
 const board = document.querySelector('#board');
-const colors = ['#e74c3c', '#8e44ad', '#3498db', '#e67e22', '2ecc71', '#FF7251', '#48D3EC', '#017C9E', '#10C3AE', '#43DC49', '#C822FF', '#E6ABFF', '#6DC7FF', '#1A6DFF', '#DC4355', '#FFD467'];
-const SQUARES_NUMBERS = 759;
+let time = 0;
+let score = 0;
 
-for (let i = 0; i < SQUARES_NUMBERS; i++) {
-  const square = document.createElement('div');
-  square.classList.add('square');
+startBtn.addEventListener('click', (e) => {
+  e.preventDefault();
+  screens[0].classList.add('up');
+});
 
-  square.addEventListener('mouseover', setColor);
-  square.addEventListener('mouseleave', removeColor);
+timeList.addEventListener('click', (e) => {
+  if (e.target.classList.contains('time-btn')) {
+    time = parseInt(e.target.getAttribute('data-time'));
+    screens[1].classList.add('up');
+    startGame();
+  }
+});
 
-  board.append(square);
+board.addEventListener('click', (e) => {
+  if (e.target.classList.contains('circle')) {
+    score++;
+    e.target.remove();
+    createRandomCircle();
+  }
+});
+
+function startGame() {
+  setInterval(decreaseTime, 1000);
+  createRandomCircle();
+  setTime(time);
 }
 
-function setColor(e) {
-  const elem = e.target
-  const color = getRandomColor();
-  elem.style.backgroundColor = color;
-  elem.style.boxShadow = `0 0 2px ${color}, 0 0 10px ${color}`;
+function decreaseTime() {
+  if (time === 0) {
+    finishGame();
+  } else {
+    let current = --time;
+    if (current < 10) {
+      current = `0${current}`;
+    }
+    setTime(current);
+  }
 }
 
-function removeColor(e) {
-  const elem = e.target
-  elem.style.backgroundColor = '#1d1d1d';
-  elem.style.boxShadow = `0 0 2px #000`;
+function setTime(value) {
+  timeEl.innerHTML = `00:${value}`;
 }
 
-function getRandomColor() {
-  return colors[Math.floor(Math.random() * colors.length)];
+function createRandomCircle() {
+  const circle = document.createElement('div');
+  const { width, height } = board.getBoundingClientRect();
+  const size = getRandomParams(12, 35);
+  const x = getRandomParams(0, width - size);
+  const y = getRandomParams(0, height - size);
+
+  circle.classList.add('circle');
+  circle.style.width = `${size}px`;
+  circle.style.height = `${size}px`;
+  circle.style.top = `${y}px`;
+  circle.style.left = `${x}px`;
+
+  board.append(circle);
 }
+
+function getRandomParams(min, max) {
+  return Math.round(Math.random() * (max - min) + min);
+}
+
+function finishGame() {
+  timeEl.parentNode.classList.add('hide');
+  board.innerHTML = `<h1>Счёт: <span class='primary'>${score}</span></h1>`;
+}
+
+// function winTheGame() {
+//   function kill() {
+//     const circle = document.querySelector('.circle');
+//     if (circle) {
+//       circle.click();
+//     }
+//   }
+//   setInterval(kill, 10);
+// }
